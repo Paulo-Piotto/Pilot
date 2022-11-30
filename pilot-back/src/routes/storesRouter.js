@@ -12,11 +12,6 @@ storeRouter.post(`${PATH}`,
 );
 
 storeRouter.get(`${PATH}`,
-  storesController.findAll
-);
-
-storeRouter.get(
-  `${PATH}/:name`,
   storesController.find
 );
 
