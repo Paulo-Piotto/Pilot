@@ -9,9 +9,11 @@ async function create(newStore) {
 }
 
 async function find(storeName) {
-   const result = await client.stores.findUnique({
+   const result = await client.stores.findMany({
       where: {
-        name: storeName,
+        name: {
+         contains: storeName
+        },
       },
     })
    return result;
