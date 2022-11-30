@@ -1,9 +1,9 @@
 import { Router } from "express";
-import genericRouter from "./genericRouter.js";
+import storesRouter from "./storesRouter.js";
 
 
 const router = Router();
 
-router.use(genericRouter);
+router.use(storesRouter);
 
 export default router;
