@@ -1,18 +1,18 @@
 import { Router } from "express";
-import * as storesController from "../controllers/storesController.js";
+import * as clientsController from '../controllers/clientsController.js'
 import * as schemaValidationMiddleware from '../middlewares/schemaValidationMiddleware.js'
 import storeNClientSchema from "../schemas/storeNClientSchema.js";
 
-const storeRouter = Router();
-const PATH = "/stores";
+const clientsRouter = Router();
+const PATH = "/clients";
 
-storeRouter.post(`${PATH}`,
+clientsRouter.post(`${PATH}`,
   (req, res, next) => schemaValidationMiddleware.test(req, res, next, storeNClientSchema),
-  storesController.post
+  clientsController.post
 );
 
-storeRouter.get(`${PATH}`,
-  storesController.find
+clientsRouter.get(`${PATH}`,
+  clientsController.find
 );
 
-export default storeRouter;
+export default clientsRouter;

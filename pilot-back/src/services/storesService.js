@@ -2,7 +2,7 @@ import * as storesRepository from "../repositories/storesRepository.js";
 
 async function create(newStore) {
   const alreadyExists = await storesRepository.find(newStore.name);
-  if(alreadyExists){
+  if(alreadyExists[0]){
     throw { type: "conflict", message: "This store already exists" };
   }
   const result = await storesRepository.create(newStore);
@@ -11,7 +11,7 @@ async function create(newStore) {
 
 async function find(storeName) {
   const result = await storesRepository.find(storeName);
-  if (!result) {
+  if (!result[0]) {
     throw { type: "not_found", message: "store not found" };
   }
   return result;
@@ -19,7 +19,7 @@ async function find(storeName) {
 
 async function findAll() {
   const result = await storesRepository.findAll();
-  if (!result) {
+  if (!result[0]) {
     throw { type: "not_found", message: "no records found" };
   }
   return result;
