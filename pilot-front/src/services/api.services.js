@@ -6,6 +6,11 @@ function getAllEmployees(){
     return axios.get(`${URL}/employees`);
 }
 
+function registerEmployee(newEmployee){
+    return axios.post(`${URL}/employees`, newEmployee);
+}
+
 export {
     getAllEmployees,
+    registerEmployee,
 }

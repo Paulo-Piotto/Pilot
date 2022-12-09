@@ -2,7 +2,7 @@ import { CardStyle } from "../styles/cardStyles";
 
 export default function Card({contrast, subtitle, title, iconName, number, action}){
     return(
-        <CardStyle contrast={contrast}>
+        <CardStyle contrast={contrast} onClick={action} >
             {!contrast ? (
                 <>
                 <section>
