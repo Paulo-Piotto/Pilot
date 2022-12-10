@@ -10,8 +10,8 @@ import TableItem from "../components/tableItem";
 export default function EmployeesPage(){    
     const [employees, setEmployees] = useState([]);
     const [absoluteEmployees, setAbsoluteEmployees] = useState(0)
-    const [operRegister, setOpenRegister] = useState(false);
-    const [operSearch, setOpenSearch] = useState(false);
+    const [openRegister, setOpenRegister] = useState(false);
+    const [openSearch, setOpenSearch] = useState(false);
 
     useEffect(() => {
         getAllEmployees().then((resp) =>{
@@ -32,8 +32,8 @@ export default function EmployeesPage(){
             <Card contrast={false} subtitle='Buscar' title='Funcionário' iconName='search-outline' action={() => setOpenSearch(true)} />
             <Card contrast={true} subtitle='Funcionários registrados' number={absoluteEmployees} />
         </CardsContainer>
-        <RegisterEmployeeDialog openDialog={operRegister} handleCloseDialog={handleCloseDialog} setEmployees={setEmployees} />
-        <SearchEmployeeDialog openDialog={operSearch} handleCloseDialog={handleCloseDialog} setEmployees={setEmployees} />
+        <RegisterEmployeeDialog openDialog={openRegister} handleCloseDialog={handleCloseDialog} setEmployees={setEmployees} setAbsoluteEmployees={setAbsoluteEmployees} />
+        <SearchEmployeeDialog openDialog={openSearch} handleCloseDialog={handleCloseDialog} setEmployees={setEmployees} />
         <TableHeader>
             <p>Nome</p>
             <p>Salário Base</p>
@@ -43,7 +43,7 @@ export default function EmployeesPage(){
         {employees[0] ? (
             <TableContainer>
             {employees.map((employee) => 
-                <TableItem rowData={employee}/>
+                <TableItem rowData={employee} type='employee' />
             )}
         </TableContainer>
         ): ''}

@@ -55,7 +55,7 @@ const TableRow = styled.div`
     margin-left: calc(50% - 35vw);
     padding: 0 20px;
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: ${(props) => !props.single ? "flex-start" : "space-between"};
     align-items: center;
     
 `
