@@ -23,8 +23,8 @@ const CardStyle = styled.div`
     font-family: 'Roboto', sans-serif;
 
     &&:hover{
-        cursor: pointer;
-        filter: brightness(1.2)
+        cursor: ${(props) => props.contrast ? "" : "pointer"};
+        filter: ${(props) => props.contrast ? "brightness(1)" : "brightness(1.2)"};
     }
 
     div {
