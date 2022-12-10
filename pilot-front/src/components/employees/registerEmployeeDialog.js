@@ -8,11 +8,11 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { employeeValidation } from '../services/validationServices/employeesValidation';
+import { employeeValidation } from '../../services/validationServices/employeesValidation';
 import styled from 'styled-components';
-import RegisterSnackbar from './registerSnackbar';
-import { registerEmployee } from '../services/api.services';
-import { getAllEmployees } from '../services/api.services';
+import RegisterSnackbar from '../generics/registerSnackbar';
+import { registerEmployee } from '../../services/api.services';
+import { getAllEmployees } from '../../services/api.services';
 
 export default function RegisterEmployeeDialog({openDialog, handleCloseDialog, setEmployees, setAbsoluteEmployees}){
 

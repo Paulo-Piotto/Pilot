@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { getAllStores } from "../services/api.services";
 import { CardsContainer } from "../styles/cardStyles";
-import Card from "../components/card";
-import RegisterStoreDialog from "../components/registerStoreDialog";
-import SearchStoreDialog from "../components/searchStoreDialog";
+import Card from "../components/generics/card";
+import RegisterStoreDialog from "../components/stores/registerStoreDialog";
+import SearchStoreDialog from "../components/stores/searchStoreDialog";
 import { TableContainer, TableHeader } from "../styles/tableStyles";
-import TableItem from "../components/tableItem";
+import TableItem from "../components/generics/tableItem";
 
 export default function StoresPage(){    
     const [stores, setStores] = useState([]);

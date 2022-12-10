@@ -5,35 +5,35 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { searchStoreByName, getAllStores } from '../services/api.services';
-import RegisterSnackbar from './registerSnackbar';
+import { searchEmployeeByName, getAllEmployees } from '../../services/api.services';
+import RegisterSnackbar from '../generics/registerSnackbar';
 
-export default function SearchStoreDialog({openDialog, handleCloseDialog, setStores}){
+export default function SearchEmployeeDialog({openDialog, handleCloseDialog, setEmployees}){
 
     const [name, setName] = useState('');
     const [snackbar, setSnackbar] = useState(false)
 
    function handleSubmit(e){
     e.preventDefault();
-    searchStoreByName(name)
-        .then((resp) => {
-            setStores(resp.data);
-            handleCloseDialog();
-            setName('');
-        })
-        .catch(() => {
-            setSnackbar(true)
-            getAllStores()
-                .then((resp) => {
-                    setStores(resp.data)
-                })
+        searchEmployeeByName(name)
+            .then((resp) => {
+                setEmployees(resp.data);
+                handleCloseDialog();
+                setName('');
+            })
+            .catch(() => {
+                setSnackbar(true)
+                getAllEmployees()
+                    .then((resp) => {
+                        setEmployees(resp.data)
+                    })
             })
    }
 
     return(
         <>
         <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth='sm' fullWidth={true} >
-        <DialogTitle>Buscar Loja</DialogTitle>
+        <DialogTitle>Buscar Funcionário</DialogTitle>
         <form onSubmit={handleSubmit} noValidate>
         <DialogContent>           
           <TextField
@@ -41,7 +41,7 @@ export default function SearchStoreDialog({openDialog, handleCloseDialog, setSto
             autoFocus
             margin="dense"
             id="name"
-            label="Nome da loja"
+            label="Nome do funcionário"
             type="text"
             required={true}
             fullWidth

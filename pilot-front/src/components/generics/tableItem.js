@@ -1,4 +1,4 @@
-import { TableRow, RowCell } from "../styles/tableStyles";
+import { TableRow, RowCell } from "../../styles/tableStyles";
 import dayjs from "dayjs";
 import { IoPencilSharp, IoTrashOutline } from "react-icons/io5";
 import styled from "styled-components";

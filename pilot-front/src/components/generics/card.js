@@ -1,4 +1,4 @@
-import { CardStyle } from "../styles/cardStyles";
+import { CardStyle } from "../../styles/cardStyles";
 
 export default function Card({contrast, subtitle, title, iconName, number, action}){
     return(
