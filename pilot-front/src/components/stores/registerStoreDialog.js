@@ -5,9 +5,9 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { getAllStores, registerStore } from '../services/api.services';
-import { storeValidation } from '../services/validationServices/storesValidation';
-import RegisterSnackbar from './registerSnackbar';
+import { getAllStores, registerStore } from '../../services/api.services';
+import { storeValidation } from '../../services/validationServices/storesValidation';
+import RegisterSnackbar from '../generics/registerSnackbar';
 
 export default function RegisterStoreDialog({openDialog, handleCloseDialog, setStores, setAbsoluteStores}){
 

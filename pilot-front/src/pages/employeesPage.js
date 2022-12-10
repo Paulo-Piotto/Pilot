@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { getAllEmployees } from "../services/api.services";
 import { CardsContainer } from "../styles/cardStyles";
-import Card from "../components/card";
-import RegisterEmployeeDialog from "../components/registerEmployeeDialog";
-import SearchEmployeeDialog from "../components/searchEmployeeDialog";
+import Card from "../components/generics/card";
+import RegisterEmployeeDialog from "../components/employees/registerEmployeeDialog";
+import SearchEmployeeDialog from "../components/employees/searchEmployeeDialog";
 import { TableContainer, TableHeader } from "../styles/tableStyles";
-import TableItem from "../components/tableItem";
+import TableItem from "../components/generics/tableItem";
 
 export default function EmployeesPage(){    
     const [employees, setEmployees] = useState([]);
