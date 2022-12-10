@@ -5,45 +5,59 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { searchEmployeeByName, getAllEmployees } from '../services/api.services';
+import { getAllStores, registerStore } from '../services/api.services';
+import { storeValidation } from '../services/validationServices/storesValidation';
 import RegisterSnackbar from './registerSnackbar';
 
-export default function SearchEmployeeDialog({openDialog, handleCloseDialog, setEmployees}){
+export default function RegisterStoreDialog({openDialog, handleCloseDialog, setStores, setAbsoluteStores}){
 
     const [name, setName] = useState('');
     const [snackbar, setSnackbar] = useState(false)
+    const [nameHelper, setNameHelper] = useState('');
+    const [nameError, setNameError] = useState(false);
 
    function handleSubmit(e){
     e.preventDefault();
-        searchEmployeeByName(name)
-            .then((resp) => {
-                setEmployees(resp.data);
+    const errorObject = storeValidation({ name });
+
+    if(errorObject){
+        setNameError(errorObject.name.error);
+        setNameHelper(errorObject.name.helper);
+    }else{
+        registerStore({ name })
+            .then(() => {
+                setSnackbar(true);
                 handleCloseDialog();
                 setName('');
-            })
-            .catch(() => {
-                setSnackbar(true)
-                getAllEmployees()
+                getAllStores()
                     .then((resp) => {
-                        setEmployees(resp.data)
+                        setStores(resp.data)
+                        setAbsoluteStores(resp.data.length)
                     })
             })
+            .catch(() => {
+                alert('algo deu errado')
+            })
+        
+    }       
    }
 
     return(
         <>
         <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth='sm' fullWidth={true} >
-        <DialogTitle>Buscar Funcionário</DialogTitle>
+        <DialogTitle>Cadastrar Loja</DialogTitle>
         <form onSubmit={handleSubmit} noValidate>
         <DialogContent>           
           <TextField
+            error={nameError}
             value={name}
             autoFocus
             margin="dense"
             id="name"
-            label="Nome do funcionário"
+            label="Nome da loja"
             type="text"
             required={true}
+            helperText={nameHelper}
             fullWidth
             variant="standard"
             onChange={(e) => setName(e.target.value)}
@@ -51,11 +65,11 @@ export default function SearchEmployeeDialog({openDialog, handleCloseDialog, set
         </DialogContent>
         <DialogActions>
           <Button  onClick={handleCloseDialog}>Cancelar</Button>
-          <Button type='submit'>Buscar</Button>
+          <Button type='submit'>Cadastrar</Button>
         </DialogActions>
         </form>
       </Dialog>
-      <RegisterSnackbar snackbar={snackbar} setSnackbar={setSnackbar} type={'error'}/>
+      <RegisterSnackbar snackbar={snackbar} setSnackbar={setSnackbar} type={'success'}/>
       </>
     );
 }

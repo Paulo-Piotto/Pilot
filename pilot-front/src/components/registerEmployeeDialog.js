@@ -14,7 +14,7 @@ import RegisterSnackbar from './registerSnackbar';
 import { registerEmployee } from '../services/api.services';
 import { getAllEmployees } from '../services/api.services';
 
-export default function RegisterEmployeeDialog({openDialog, handleCloseDialog, setEmployees}){
+export default function RegisterEmployeeDialog({openDialog, handleCloseDialog, setEmployees, setAbsoluteEmployees}){
 
     const [name, setName] = useState('');
     const [wageValue, setWageValue] = useState(Number(0).toFixed(2));
@@ -47,7 +47,9 @@ export default function RegisterEmployeeDialog({openDialog, handleCloseDialog, s
                 setStartDate('')
                 getAllEmployees()
                     .then((resp) => {
-                        setEmployees(resp.data.length)
+                        setEmployees(resp.data);
+                        setAbsoluteEmployees(resp.data.length)
+
                     })
             })
             .catch(() => {

@@ -14,8 +14,23 @@ function searchEmployeeByName(employeeName){
     return axios.get(`${URL}/employees?name=${employeeName}`);
 }
 
+function getAllStores(){
+    return axios.get(`${URL}/stores`);
+}
+
+function registerStore(newStore){
+    return axios.post(`${URL}/stores`, newStore);
+}
+
+function searchStoreByName(storeName){
+    return axios.get(`${URL}/stores?name=${storeName}`);
+}
+
 export {
     getAllEmployees,
     registerEmployee,
     searchEmployeeByName,
+    getAllStores,
+    registerStore,
+    searchStoreByName,
 }

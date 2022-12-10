@@ -26,7 +26,7 @@ export default function Main(){
                     <div>
                         <IoBriefcaseOutline />
                     </div>
-                    <div>
+                    <div onClick={() => navigate('/stores')} >
                         <IoStorefrontOutline />
                     </div>
                     <div>
