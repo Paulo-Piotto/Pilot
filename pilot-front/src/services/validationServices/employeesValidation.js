@@ -1,4 +1,4 @@
-import employeeSchema from "../../schemas/employeesSchemas";
+import { employeeSchema } from "../../schemas/employeesSchemas";
 
 function employeeValidation(employeeData){
     const { error } = employeeSchema.validate(employeeData)

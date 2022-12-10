@@ -116,7 +116,7 @@ export default function RegisterEmployeeDialog({openDialog, handleCloseDialog, s
         </DialogActions>
         </form>
       </Dialog>
-      <RegisterSnackbar snackbar={snackbar} setSnackbar={setSnackbar} />
+      <RegisterSnackbar snackbar={snackbar} setSnackbar={setSnackbar} type={'success'} />
       </>
     );
 }

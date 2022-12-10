@@ -3,29 +3,51 @@ import { getAllEmployees } from "../services/api.services";
 import { CardsContainer } from "../styles/cardStyles";
 import Card from "../components/card";
 import RegisterEmployeeDialog from "../components/registerEmployeeDialog";
+import SearchEmployeeDialog from "../components/searchEmployeeDialog";
+import { TableContainer, TableHeader } from "../styles/tableStyles";
+import TableItem from "../components/tableItem";
 
 export default function EmployeesPage(){    
     const [employees, setEmployees] = useState([]);
-    const [openDialog, setOpenDialog] = useState(false);
+    const [absoluteEmployees, setAbsoluteEmployees] = useState(0)
+    const [operRegister, setOpenRegister] = useState(false);
+    const [operSearch, setOpenSearch] = useState(false);
 
     useEffect(() => {
         getAllEmployees().then((resp) =>{
             setEmployees(resp.data);
+            setAbsoluteEmployees(resp.data.length);
         })
-    }, [employees])
+    }, [])
 
     function handleCloseDialog(){
-        setOpenDialog(false);
+        setOpenRegister(false);
+        setOpenSearch(false);
     }
 
     return (
         <>
         <CardsContainer>
-            <Card contrast={false} subtitle='Registrar' title='Funcionário' iconName='person-add-outline' action={() => setOpenDialog(true)}/>
-            <Card contrast={false} subtitle='Buscar' title='Funcionário' iconName='search-outline' />
-            <Card contrast={true} subtitle='Funcionários registrados' number={employees.length} />
+            <Card contrast={false} subtitle='Registrar' title='Funcionário' iconName='person-add-outline' action={() => setOpenRegister(true)}/>
+            <Card contrast={false} subtitle='Buscar' title='Funcionário' iconName='search-outline' action={() => setOpenSearch(true)} />
+            <Card contrast={true} subtitle='Funcionários registrados' number={absoluteEmployees} />
         </CardsContainer>
-        <RegisterEmployeeDialog openDialog={openDialog} handleCloseDialog={handleCloseDialog} setEmployees={setEmployees} />
+        <RegisterEmployeeDialog openDialog={operRegister} handleCloseDialog={handleCloseDialog} setEmployees={setEmployees} />
+        <SearchEmployeeDialog openDialog={operSearch} handleCloseDialog={handleCloseDialog} setEmployees={setEmployees} />
+        <TableHeader>
+            <p>Nome</p>
+            <p>Salário Base</p>
+            <p>Tel.</p>
+            <p>Data de início</p>
+        </TableHeader>
+        {employees[0] ? (
+            <TableContainer>
+            {employees.map((employee) => 
+                <TableItem rowData={employee}/>
+            )}
+        </TableContainer>
+        ): ''}
+        
         </>
     );
 }

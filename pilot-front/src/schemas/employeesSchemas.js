@@ -6,4 +6,6 @@ const employeeSchema =Joi.object({
     startDate: Joi.date().less('now').required(),
 })
 
-export default employeeSchema;
+export{
+    employeeSchema,
+} 
